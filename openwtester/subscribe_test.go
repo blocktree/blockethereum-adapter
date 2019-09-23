@@ -59,15 +59,8 @@ func TestSubscribeAddress_ETH(t *testing.T) {
 		symbol     = "BETH"
 		//accountID  = "HgRBsaiKgoVDagwezos496vqKQCh41pY44JbhW65YA8t"
 		addrs      = map[string]string{
-			"0x0f220906f237e8e56ad573cd7e258f672c6191d9": "receiver—1",
-			"0x95c28febbae551ea91c075cc6ef7ed4eaefad229": "receiver-2",
-			"0x774e0300f118feff15284090dd8c77aac75f3a2d": "receiver",
-			"0x1f44cf061cfd6420cb703c2ddae6df5c650bbce4": "receiver",
-			"0xbb2cc9a3d25dc5b7391e7be1d0b672e3f9d53de9": "receiver",
-			"0x31930f7146b11f068d6f2f28d20a9a43b91c44cf": "receiver",
-			"0x0a3aefdb58a03d7c30b2a063e1fd49c4cb5f8b60": "contract",
-			"0x98c862d9defa745f2761d09e2385e133679caa5f": "sender",
-			"0x5ba73d2a84d0b38c56a9caa05fe0f742d7182e5e": "sender",
+			"0x44eb629c1e5ff10657340de340dfd2cda09536fc": "receiver—1",
+
 		}
 	)
 
@@ -102,7 +95,7 @@ func TestSubscribeAddress_ETH(t *testing.T) {
 
 	//log.Debug("already got scanner:", assetsMgr)
 	scanner := assetsMgr.GetBlockScanner()
-	scanner.SetRescanBlockHeight(8275447)
+	scanner.SetRescanBlockHeight(1)
 
 	if scanner == nil {
 		log.Error(symbol, "is not support block scan")

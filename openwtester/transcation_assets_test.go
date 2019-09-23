@@ -121,7 +121,7 @@ func testSubmitTransactionStep(tm *openw.WalletManager, rawTx *openwallet.RawTra
 func TestTransfer_ETH(t *testing.T) {
 
 	addrs := []string{
-		"0x19a8a507f05fb77d9dd49cd48a3da589a6b1060d",
+		"0x44eb629c1e5ff10657340de340dfd2cda09536fc",
 		//"0x8fd9803aeade363d237628f54ca24d6a705983fb",
 		//"0xa5d713fccf57c81cee67621729af9946565b4c74",
 		//"0xff3738ba70b97bcc907d6fff2e6c4e6f34f99dab",

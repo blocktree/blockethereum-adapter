@@ -409,9 +409,13 @@ func (this *ETHBLockScanner) UpdateTxByReceipt(tx *BlockTransaction) (map[string
 	}
 
 	tx.Gas = receipt.GasUsed
-	tx.Status, err = ConvertToUint64(receipt.Status, 16)
-	if err != nil {
-		return nil, err
+	if receipt.Status == ""{
+		tx.Status = 1
+	}else {
+		tx.Status, err = ConvertToUint64(receipt.Status, 16)
+		if err != nil {
+			return nil, err
+		}
 	}
 	// transEvent := receipt.ParseTransferEvent()
 	// if transEvent == nil {
