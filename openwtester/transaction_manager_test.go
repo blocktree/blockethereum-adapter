@@ -27,7 +27,7 @@ import (
 
 func TestWalletManager_GetTransactions(t *testing.T) {
 	tm := testInitWalletManager()
-	list, err := tm.GetTransactions(testApp, 0, -1, "Received", false)
+	list, err := tm.GetTransactions(testApp, 0, 100, "Received", false)
 	if err != nil {
 		log.Error("GetTransactions failed, unexpected error:", err)
 		return

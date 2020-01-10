@@ -121,73 +121,77 @@ func testSubmitTransactionStep(tm *openw.WalletManager, rawTx *openwallet.RawTra
 func TestTransfer_ETH(t *testing.T) {
 
 	addrs := []string{
-		"0x44eb629c1e5ff10657340de340dfd2cda09536fc",
-		//"0x8fd9803aeade363d237628f54ca24d6a705983fb",
-		//"0xa5d713fccf57c81cee67621729af9946565b4c74",
-		//"0xff3738ba70b97bcc907d6fff2e6c4e6f34f99dab",
+		"0x16f4f44f1729b80f0401dd2fa15bed0f68ccb8b7",
 	}
+
+
 
 	tm := testInitWalletManager()
 	walletID := "WBup5yKfqFW17qTT3yR4HpdDt8uEj4MUc1"
 	accountID := "5f41cwEcQNDguhLK5LKRh8bVz42mXwdLGgpuTmqq1uKM"
-	//accountID := "AfF8aoW2M2bQwVc2aJ38cCGEcnXF3WCsma1Day7zGA4C"
-	//to := "0xd35f9ea14d063af9b3567064fab567275b09f03d"
 
 	testGetAssetsAccountBalance(tm, walletID, accountID)
 
-	for _, to := range addrs {
-		rawTx, err := testCreateTransactionStep(tm, walletID, accountID, to, "0.01", "", nil)
-		if err != nil {
-			return
+	for i := 0; i < 1; i++ {
+		for _, to := range addrs {
+			rawTx, err := testCreateTransactionStep(tm, walletID, accountID, to, "10", "", nil)
+			if err != nil {
+				return
+			}
+
+			log.Std.Info("rawTx: %+v", rawTx)
+
+			_, err = testSignTransactionStep(tm, rawTx)
+			if err != nil {
+				return
+			}
+
+			_, err = testVerifyTransactionStep(tm, rawTx)
+			if err != nil {
+				return
+			}
+
+			_, err = testSubmitTransactionStep(tm, rawTx)
+			if err != nil {
+				return
+			}
 		}
 
-		log.Std.Info("rawTx: %+v", rawTx)
 
-		_, err = testSignTransactionStep(tm, rawTx)
-		if err != nil {
-			return
-		}
-
-		_, err = testVerifyTransactionStep(tm, rawTx)
-		if err != nil {
-			return
-		}
-
-		_, err = testSubmitTransactionStep(tm, rawTx)
-		if err != nil {
-			return
-		}
 	}
+
 }
+
+
+
 
 func TestTransfer_ERC20(t *testing.T) {
 	tm := testInitWalletManager()
-	walletID := "WBGYxZ6yEX582Mx8mGvygXevdLVc7NQnLM"
-	accountID := "3csEgf2TcxwNeoFSTsePXFVmzcyNhHAS49jsTv99n1Nv"
+	walletID := "WBup5yKfqFW17qTT3yR4HpdDt8uEj4MUc1"
+	accountID := "5f41cwEcQNDguhLK5LKRh8bVz42mXwdLGgpuTmqq1uKM"
 	//accountID := "AfF8aoW2M2bQwVc2aJ38cCGEcnXF3WCsma1Day7zGA4C"
-	to := "0xd35f9ea14d063af9b3567064fab567275b09f03d"
+	to := "0x9fb5fa6efb6cdd3e0eacb6559855b70b2eeb3e0a"
+
+
 
 	contract := openwallet.SmartContract{
-		Address:  "4092678e4E78230F46A1534C0fbc8fA39780892B",
-		Symbol:   "BETH",
-		Name:     "OCoin",
-		Token:    "OCN",
-		Decimals: 18,
+		//Address:  "0xc8e1dc5d0f7079187f3bc306152da46e60f4a76c", //new one
+		Address:  "0x0d5647b3dbbd4e6761c5f334a68003683c9250f1",
+		Symbol:"BETH",
+		Name:"BlockTree MCC",
+		Token:"BMCC",
+		Decimals: 8,
+		Protocol:"ERC20",
 	}
 
-	//contract := openwallet.SmartContract{
-	//	Address:  "0xf217744b7a8d35b77fabbbb74acccdc15f56b3a9",
-	//	Symbol:   "BETH",
-	//	Name:     "Initial Vote Offering Token",
-	//	Token:    "IVT",
-	//	Decimals: 2,
-	//}
+
+
 
 	testGetAssetsAccountBalance(tm, walletID, accountID)
 
 	testGetAssetsAccountTokenBalance(tm, walletID, accountID, contract)
 
-	rawTx, err := testCreateTransactionStep(tm, walletID, accountID, to, "1000", "", &contract)
+	rawTx, err := testCreateTransactionStep(tm, walletID, accountID, to, "30", "", &contract)
 	if err != nil {
 		return
 	}
@@ -202,10 +206,10 @@ func TestTransfer_ERC20(t *testing.T) {
 		return
 	}
 
-	//_, err = testSubmitTransactionStep(tm, rawTx)
-	//if err != nil {
-	//	return
-	//}
+	_, err = testSubmitTransactionStep(tm, rawTx)
+	if err != nil {
+		return
+	}
 
 }
 

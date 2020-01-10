@@ -145,3 +145,4 @@ func TestWalletManager_GetAddressList(t *testing.T) {
 
 	tm.CloseDB(testApp)
 }
+
