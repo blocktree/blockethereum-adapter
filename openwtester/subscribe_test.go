@@ -113,6 +113,7 @@ func TestSubscribeAddress_ETH(t *testing.T) {
 		log.Error(symbol, "is not support block scan")
 		return
 	}
+	scanner.SetRescanBlockHeight(513968)
 
 	scanner.SetBlockScanAddressFunc(scanAddressFunc)
 

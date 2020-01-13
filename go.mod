@@ -7,7 +7,7 @@ require (
 	github.com/Sereal/Sereal v0.0.0-20191211210414-3a6c62eca003 // indirect
 	github.com/asdine/storm v2.1.2+incompatible
 	github.com/astaxie/beego v1.12.0
-	github.com/blocktree/ethereum-adapter v1.4.0
+	github.com/blocktree/ethereum-adapter v1.4.1
 	github.com/blocktree/go-owcdrivers v1.2.0
 	github.com/blocktree/go-owcrypt v1.1.1
 	github.com/blocktree/openwallet v1.7.0
